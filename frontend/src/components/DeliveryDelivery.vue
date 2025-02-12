@@ -1,5 +1,5 @@
 <template>
-    <v-card style="width:450px; height:100%;" outlined>
+    <v-card outlined>
         <template slot="progress">
             <v-progress-linear
                     color="primary-darker-1"
@@ -16,6 +16,12 @@
         </v-card-title >        
 
         <v-card-text style="background-color: white;">
+            <String label="Address" v-model="value.address" :editMode="editMode" :inputUI="''"/>
+            <Number label="Qty" v-model="value.qty" :editMode="editMode" :inputUI="''"/>
+            <String label="ItemId" v-model="value.itemId" :editMode="editMode" :inputUI="''"/>
+            <String label="OrderId" v-model="value.orderId" :editMode="editMode" :inputUI="''"/>
+            <String label="CustomerId" v-model="value.customerId" :editMode="editMode" :inputUI="''"/>
+            <String label="Status" v-model="value.status" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
         <v-card-actions style="background-color: white;">
@@ -42,21 +48,7 @@
                     text
                     @click="save"
                 >
-                    DeliverysStart
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    DellveryComplet
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    ReturnDelivery
+                저장
                 </v-btn>
                 <v-btn
                     color="primary"
@@ -70,6 +62,30 @@
         </v-card-actions>
         <v-card-actions>
             <v-spacer></v-spacer>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="deliverysStart"
+            >
+                DeliverysStart
+            </v-btn>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="dellveryComplet"
+            >
+                DellveryComplet
+            </v-btn>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="returnDelivery"
+            >
+                ReturnDelivery
+            </v-btn>
         </v-card-actions>
 
         <v-snackbar
@@ -203,6 +219,63 @@
             },
             change(){
                 this.$emit('input', this.value);
+            },
+            async deliverysStart() {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links['deliverysstart'].href))
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            async dellveryComplet() {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links['dellverycomplet'].href))
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            async returnDelivery() {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links['returndelivery'].href))
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
             },
         },
     }

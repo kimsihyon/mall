@@ -67,6 +67,12 @@
             headers: 
                 [
                     { text: "id", value: "id" },
+                    { text: "address", value: "address" },
+                    { text: "qty", value: "qty" },
+                    { text: "itemId", value: "itemId" },
+                    { text: "orderId", value: "orderId" },
+                    { text: "customerId", value: "customerId" },
+                    { text: "status", value: "status" },
                 ],
             delivery : [],
             newValue: {},
@@ -84,6 +90,12 @@
             this.values = temp.data._embedded.deliveries;
 
             this.newValue = {
+                'address': '',
+                'qty': 0,
+                'itemId': '',
+                'orderId': '',
+                'customerId': '',
+                'status': '',
             }
         },
         methods: {

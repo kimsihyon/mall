@@ -22,6 +22,16 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String itemId;
+
+    private Integer qty;
+
+    private String address;
+
+    private String customerId;
+
+    private String status;
+
     @PostPersist
     public void onPostPersist() {
         OrderPlaced orderPlaced = new OrderPlaced(this);

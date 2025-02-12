@@ -16,6 +16,9 @@ import InventoryInventoryDetail from "./components/listers/InventoryInventoryDet
 
 
 
+import MypageView from "./components/MypageView"
+import MypageViewDetail from "./components/MypageViewDetail"
+
 export default new Router({
     // mode: 'history',
     base: process.env.BASE_URL,
@@ -54,6 +57,17 @@ export default new Router({
             },
 
 
+
+            {
+                path: '/mypages/mypages',
+                name: 'MypageView',
+                component: MypageView
+            },
+            {
+                path: '/mypages/mypages/:id',
+                name: 'MypageViewDetail',
+                component: MypageViewDetail
+            },
 
 
     ]

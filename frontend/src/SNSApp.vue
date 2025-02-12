@@ -69,6 +69,17 @@
 
 
 
+
+                    <v-list-item
+                        class="px-2"
+                        key="mypages"
+                        to="/mypages/mypages"
+                        @click="changeUrl()"
+                        color="primary"
+                        style="font-weight:700;"
+                    >
+                        Mypage
+                    </v-list-item>
                 </v-list>
             </v-navigation-drawer>
         </div>
@@ -85,47 +96,26 @@
                     <div class="App-main-text-overlap"></div>
                     <div class="App-sub-text-overlap"></div>
                 </div>
-                <v-row>
-                    <v-col cols="4" class="d-flex justify-center" v-for="(aggregate, index) in aggregate" :key="index">
+                <v-row class="pa-0 ma-0">
+                    <v-col cols="4" class="pa-0 pa-0" v-for="(aggregate, index) in aggregate" :key="index">
                         <div 
-                            class="flip-card"
-                            @mouseover="flipCard(index)"
-                            @mouseleave="unflipCard(index)"
-                            :class="{ 'is-flipped': flipped[index] }"
+                            class="flip-card pa-4"
                         >
-                            <div class="flip-card-inner">
-                                <div class="flip-card-front">
-                                    <v-card
-                                        class="mx-auto"
-                                        style="width:300px; min-height: 310px; margin-bottom:20px; text-align: center; border-radius: 10px;"
-                                        outlined
-                                    >
-                                        <v-list-item style="padding:15px; margin:0px;">
-                                            <v-img style="width:100%; height:120px; border-radius: 10px;" :src="aggregate.ImageUrl"></v-img>
-                                        </v-list-item>
-                                        <div style="text-align: left; padding:10px 15px 15px 15px; margin-top:-10px;">
-                                            <h2>{{ aggregate.title }}</h2>
-                                            <div>{{ aggregate.description }}</div>
-                                        </div>
-                                    </v-card>
+                            <v-card
+                                :key="aggregate.key"
+                                :to="aggregate.route"
+                                @click="changeUrl()"
+                                class="mx-auto main-card pa-4"
+                                style="text-align: center; border-radius: 10px;"
+                                outlined
+                            >
+                                <div class="d-flex justify-center" style="width:120px; height:120px; border-radius: 10px; margin: 0 auto; background-color:white;">
+                                    <v-img style="width:100%; height:100%; object-fit:contain; border-radius: 10px;" :src="aggregate.ImageUrl"></v-img>
                                 </div>
-                                <div class="flip-card-back">
-                                    <v-card
-                                        color="primary"
-                                        class="mx-auto"
-                                        style="width:300px; min-height: 310px; margin-bottom:20px; text-align: center; border-radius: 10px;"
-                                        outlined
-                                        :key="aggregate.key"
-                                        :to="aggregate.route"
-                                        @click="changeUrl()"
-                                    >
-                                        <v-list-item style="padding:15px; margin:0px;">
-                                            <v-img style="width:100%; height:120px; border-radius: 10px;" :src="aggregate.ImageUrl"></v-img>
-                                        </v-list-item>
-                                        <h2 style="color:white;">{{ aggregate.title }} 관리</h2>
-                                    </v-card>
+                                <div style="text-align: center;">
+                                    <h2 class="main-card-title">{{ aggregate.title }}</h2>
                                 </div>
-                            </div>
+                            </v-card>
                         </div>
                     </v-col>
                 </v-row>
@@ -166,6 +156,13 @@ export default {
                 description: 'inventory을 관리하는 화면입니다.', 
                 key: 'inventories', 
                 route: '/inventories/inventories',
+                ImageUrl: '',
+            },
+            { 
+                title: 'Mypage', 
+                description: 'mypage을 관리하는 화면입니다.', 
+                key: 'mypages', 
+                route: '/mypages/mypages',
                 ImageUrl: '',
             },
             

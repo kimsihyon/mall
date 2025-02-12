@@ -12,6 +12,11 @@ import mall.infra.AbstractEvent;
 public class OrderPlaced extends AbstractEvent {
 
     private Long id;
+    private String itemId;
+    private Integer qty;
+    private String address;
+    private String customerId;
+    private String status;
 
     public OrderPlaced(Order aggregate) {
         super(aggregate);

@@ -108,6 +108,12 @@
             me.values = temp.data._embedded.deliveries;
             
             me.newValue = {
+                'address': '',
+                'qty': 0,
+                'itemId': '',
+                'orderId': '',
+                'customerId': '',
+                'status': '',
             }
         },
         methods:{
