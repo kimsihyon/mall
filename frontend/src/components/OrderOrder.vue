@@ -1,5 +1,5 @@
 <template>
-    <v-card style="width:450px; height:100%;" outlined>
+    <v-card outlined>
         <template slot="progress">
             <v-progress-linear
                     color="primary-darker-1"
@@ -16,6 +16,11 @@
         </v-card-title >        
 
         <v-card-text style="background-color: white;">
+            <String label="ItemId" v-model="value.itemId" :editMode="editMode" :inputUI="''"/>
+            <Number label="Qty" v-model="value.qty" :editMode="editMode" :inputUI="''"/>
+            <String label="Address" v-model="value.address" :editMode="editMode" :inputUI="''"/>
+            <String label="CustomerId" v-model="value.customerId" :editMode="editMode" :inputUI="''"/>
+            <String label="Status" v-model="value.status" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
         <v-card-actions style="background-color: white;">

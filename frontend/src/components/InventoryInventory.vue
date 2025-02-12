@@ -1,5 +1,5 @@
 <template>
-    <v-card style="width:450px; height:100%;" outlined>
+    <v-card outlined>
         <template slot="progress">
             <v-progress-linear
                     color="primary-darker-1"
@@ -16,6 +16,7 @@
         </v-card-title >        
 
         <v-card-text style="background-color: white;">
+            <String label="Stock" v-model="value.stock" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
         <v-card-actions style="background-color: white;">

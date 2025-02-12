@@ -108,6 +108,7 @@
             me.values = temp.data._embedded.inventories;
             
             me.newValue = {
+                'stock': '',
             }
         },
         methods:{

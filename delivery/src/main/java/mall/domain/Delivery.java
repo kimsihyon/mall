@@ -9,9 +9,7 @@ import javax.persistence.*;
 import lombok.Data;
 import mall.DeliveryApplication;
 import mall.domain.DeliveryCancelled;
-import mall.domain.DeliveryCompleted;
 import mall.domain.DeliveryReturned;
-import mall.domain.DeliveryStarted;
 
 @Entity
 @Table(name = "Delivery_table")
@@ -23,20 +21,17 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @PostPersist
-    public void onPostPersist() {
-        DeliveryStarted deliveryStarted = new DeliveryStarted(this);
-        deliveryStarted.publishAfterCommit();
+    private String address;
 
-        DeliveryCompleted deliveryCompleted = new DeliveryCompleted(this);
-        deliveryCompleted.publishAfterCommit();
+    private Integer qty;
 
-        DeliveryCancelled deliveryCancelled = new DeliveryCancelled(this);
-        deliveryCancelled.publishAfterCommit();
+    private String itemId;
 
-        DeliveryReturned deliveryReturned = new DeliveryReturned(this);
-        deliveryReturned.publishAfterCommit();
-    }
+    private String orderId;
+
+    private String customerId;
+
+    private String status;
 
     public static DeliveryRepository repository() {
         DeliveryRepository deliveryRepository = DeliveryApplication.applicationContext.getBean(
@@ -44,6 +39,32 @@ public class Delivery {
         );
         return deliveryRepository;
     }
+
+    //<<< Clean Arch / Port Method
+    public void deliverysStart() {
+        //implement business logic here:
+
+        DeliveryStarted deliveryStarted = new DeliveryStarted(this);
+        deliveryStarted.publishAfterCommit();
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public void dellveryComplet() {
+        //implement business logic here:
+
+        DeliveryCompleted deliveryCompleted = new DeliveryCompleted(this);
+        deliveryCompleted.publishAfterCommit();
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public void returnDelivery() {
+        //implement business logic here:
+
+    }
+
+    //>>> Clean Arch / Port Method
 
     //<<< Clean Arch / Port Method
     public static void deliveryList(OrderPlaced orderPlaced) {

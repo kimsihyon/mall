@@ -12,6 +12,11 @@ import mall.infra.AbstractEvent;
 public class OrderCancelled extends AbstractEvent {
 
     private Long id;
+    private String itemId;
+    private Integer qty;
+    private String address;
+    private String customerId;
+    private String status;
 
     public OrderCancelled(Order aggregate) {
         super(aggregate);

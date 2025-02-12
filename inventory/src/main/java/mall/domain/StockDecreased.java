@@ -12,6 +12,7 @@ import mall.infra.AbstractEvent;
 public class StockDecreased extends AbstractEvent {
 
     private Long id;
+    private String stock;
 
     public StockDecreased(Inventory aggregate) {
         super(aggregate);

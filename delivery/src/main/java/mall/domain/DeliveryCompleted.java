@@ -12,6 +12,12 @@ import mall.infra.AbstractEvent;
 public class DeliveryCompleted extends AbstractEvent {
 
     private Long id;
+    private String address;
+    private Integer qty;
+    private String itemId;
+    private String orderId;
+    private String customerId;
+    private String status;
 
     public DeliveryCompleted(Delivery aggregate) {
         super(aggregate);
